@@ -1,10 +1,11 @@
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Hero = () => {
   const whatsappNumber = "+919071331124";
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+  const isMobile = useIsMobile();
 
   return (
     <div className="relative h-[85vh] md:h-screen flex items-center justify-center overflow-hidden">
@@ -14,7 +15,11 @@ const Hero = () => {
             src="/lovable-uploads/b0fbf4d9-3076-42b2-8a35-0140e2283ab2.png"
             alt="Woman with long flowing dark hair on light background"
             className="w-full h-full object-cover"
-            style={{ objectPosition: "center center" }}
+            style={{ 
+              objectPosition: isMobile ? "40% center" : "center center",
+              objectFit: isMobile ? "cover" : "cover",
+              transform: isMobile ? "scale(0.95)" : "none"
+            }}
             loading="eager"
             decoding="async"
           />
